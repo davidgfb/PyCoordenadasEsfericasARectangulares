@@ -1,11 +1,11 @@
-from math import sin, cos, radians
+from math import sin, cos, radians, acos, degrees
 
 from pygame         import init, Color
 from pygame.display import set_mode, update
 from pygame.gfxdraw import pixel
 from pygame.event   import get
 
-from numpy import array
+from numpy import array, around
 from numpy.linalg import norm
 
 def ptoEsferaUnidad(alfa, beta, esX_Origen = True):
@@ -104,12 +104,6 @@ while True:
 
         imprimePtoCam()
 
-'''
-from numpy import array, around
-from numpy.linalg import norm
-
-from math import acos, degrees
-
 def posI(): #planeNormal, planePoint, rayDirection, rayPoint, epsilon=1e-6):
     pE_N_D = n @ d
 
@@ -142,4 +136,3 @@ d = d / norm(d)
 dRed = around(d, 2)
 
 print("dRed =", dRed, ", posI =", posI()) #planeNormal, planePoint, rayDirection, rayPoint))
-'''
