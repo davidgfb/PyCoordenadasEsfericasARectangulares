@@ -66,7 +66,7 @@ while True:
     for e in get():
         pass
     
-    ent = input("\nqe/zc\n") # TODO: +- para ajustar v
+    ent = input("\nqe/zc\n") # TODO: WASD para cambiar posCam. +- para ajustar v
 
     if ent in "qezc":  
         if ent == "q":
@@ -85,4 +85,43 @@ while True:
         ptoCam = posCam, rotCam
 
         imprimePtoCam()
-        
+
+'''
+from numpy import array, around
+from numpy.linalg import norm
+
+from math import acos, degrees
+
+def posI(): #planeNormal, planePoint, rayDirection, rayPoint, epsilon=1e-6):
+    pE_N_D = n @ d
+
+    alfa = acos(pE_N_D)
+    alfa = degrees(alfa)
+    alfa = round(alfa, 2)
+
+    print("alfa =", alfa, "º")
+
+    pE_N_D_Abs = abs(pE_N_D)
+
+    if pE_N_D_Abs < round(pE_N_D_Abs, 2) and 89 < pE_N_D_Abs < 91:
+        print("e: ")
+
+    w = posP - posCam # w / norm(w)   
+    w *= -1
+
+    si = -n @ w / pE_N_D # no = norm(w)  
+    siRed = round(si, 2)
+
+    print("w =", w, ", siRed =", siRed)
+
+    return si * d + w + posP
+ 
+n, posP, posCam, posO = array([1,0,0]), array([1,0,0]), array([0,0,0]),\
+                        array([2,1,0])
+
+d = posO - posCam
+d = d / norm(d)
+dRed = around(d, 2)
+
+print("dRed =", dRed, ", posI =", posI()) #planeNormal, planePoint, rayDirection, rayPoint))
+'''
