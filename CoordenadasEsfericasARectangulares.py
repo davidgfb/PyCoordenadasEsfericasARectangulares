@@ -1,8 +1,12 @@
 from math import sin, cos, radians
+
 from pygame         import init, Color
 from pygame.display import set_mode, update
 from pygame.gfxdraw import pixel
 from pygame.event   import get
+
+from numpy import array
+from numpy.linalg import norm
 
 def ptoEsferaUnidad(alfa, beta, esX_Origen = True):
     '''
@@ -25,9 +29,21 @@ def ptoEsferaUnidad(alfa, beta, esX_Origen = True):
 
     return res
 
-v, NEGRO, BLANCO, PANTALLA, ptoCam = 5,\
+def dist(P, P1):
+    return P1 - P
+
+def normalizaVector(V):
+    return V / norm(V)
+
+v, NEGRO, BLANCO, PANTALLA, ptoCam, posO = 5,\
             (0, 0, 0), (255, 255, 255), set_mode((300, 300)),\
-                        [[0, 0, 0], [0, 0, 0]] #CERO, cero = (0, 0, 0), [0, 0, 0]
+            [[0, 0, 0], [0, 0, 0]], array([2, 0, 0])
+posCam, rotCam = array(ptoCam)
+
+dist = dist(posCam, posO)
+d = normalizaVector(dist)
+
+print("\n", "d =", d)
 
 def imprimePtoCam():
     posCam, rotCam = ptoCam
@@ -36,7 +52,7 @@ def imprimePtoCam():
     print("\nptoCam =", ptoCam, ", n =",\
           ptoEsferaUnidad(alfa, beta))
 
-pixel(PANTALLA, 150, 150, BLANCO)
+#pixel(PANTALLA, 150, 150, BLANCO)
 init()
 update()
 imprimePtoCam()
