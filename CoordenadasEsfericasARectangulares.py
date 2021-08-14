@@ -25,21 +25,21 @@ def ptoEsferaUnidad(alfa, beta, esX_Origen = True):
 
     return res
 
-def imprimePtoCam(ptoCam):
+v, NEGRO, BLANCO, PANTALLA, ptoCam = 5,\
+            (0, 0, 0), (255, 255, 255), set_mode((300, 300)),\
+                        [[0, 0, 0], [0, 0, 0]] #CERO, cero = (0, 0, 0), [0, 0, 0]
+
+def imprimePtoCam():
     posCam, rotCam = ptoCam
     alfa, beta, gamma = rotCam
 
     print("\nptoCam =", ptoCam, ", n =",\
           ptoEsferaUnidad(alfa, beta))
 
-v, NEGRO, BLANCO, PANTALLA, ptoCam = 5,\
-            (0, 0, 0), (255, 255, 255), set_mode((300, 300)),\
-                        [[0, 0, 0], [0, 0, 0]] #CERO, cero = (0, 0, 0), [0, 0, 0]
-
 pixel(PANTALLA, 150, 150, BLANCO)
 init()
 update()
-imprimePtoCam(ptoCam)
+imprimePtoCam()
 
 while True:
     posCam, rotCam = ptoCam
@@ -50,23 +50,23 @@ while True:
     for e in get():
         pass
     
-    ent = input("\nqe/ad\n") #TODO: +- para ajustar v
+    ent = input("\nqe/zc\n") # TODO: +- para ajustar v
 
-    if ent in "qead": 
+    if ent in "qezc":  
         if ent == "q":
             alfa -= v
 
         elif ent == "e":
             alfa += v
         
-        elif ent == "a":
+        elif ent == "z": 
             beta -= v
         
-        elif ent == "d":
+        elif ent == "c": 
             beta += v
 
         rotCam = [alfa, beta, gamma]
         ptoCam = posCam, rotCam
 
-        imprimePtoCam(ptoCam)
+        imprimePtoCam()
         
