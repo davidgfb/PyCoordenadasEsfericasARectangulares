@@ -59,6 +59,7 @@ imprimePtoCam()
 
 while True:
     posCam, rotCam = ptoCam
+    x, y, z = posCam
     alfa, beta, gamma = rotCam
     
     PANTALLA.fill(NEGRO)
@@ -66,21 +67,38 @@ while True:
     for e in get():
         pass
     
-    ent = input("\nqe/zc\n") # TODO: WASD para cambiar posCam. +- para ajustar v
+    ent = input("\npos: wasd, rot: qe / zc\n").lower() # TODO: WASD para cambiar posCam. +- para ajustar v
 
-    if ent in "qezc":  
-        if ent == "q":
-            alfa -= v
+    if ent in "wasd qezc":
+        if ent == "d":
+            x += v
 
+        elif ent == "a":
+            x -= v
+            
+        elif ent == "w":
+            y += v
+
+        elif ent == "s":
+            y -= v
+
+        elif ent == " ":
+            z += v
+
+        ################    
         elif ent == "e":
             alfa += v
-        
-        elif ent == "z": 
-            beta -= v
-        
+
+        elif ent == "q":
+            alfa -= v
+               
         elif ent == "c": 
             beta += v
 
+        elif ent == "z": #TODO: rot gamma 
+            beta -= v
+
+        posCam = [x, y, z]
         rotCam = [alfa, beta, gamma]
         ptoCam = posCam, rotCam
 
