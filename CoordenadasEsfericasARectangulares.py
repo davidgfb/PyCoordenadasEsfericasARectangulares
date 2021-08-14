@@ -57,6 +57,7 @@ init()
 update()
 imprimePtoCam()
 
+'''
 while True:
     posCam, rotCam = ptoCam
     x, y, z = posCam
@@ -103,6 +104,7 @@ while True:
         ptoCam = posCam, rotCam
 
         imprimePtoCam()
+'''
 
 def posI(): #planeNormal, planePoint, rayDirection, rayPoint, epsilon=1e-6):
     pE_N_D = n @ d
